@@ -33,7 +33,7 @@ boxes.forEach((box)=>{
         count++;
         checkWinner();
         if(count==9 && !iswin){
-            winner.innerText="Game Drawn! Press Reset";
+            winner.innerText="Game Draw! Press Reset";
             document.querySelector(".container").append(winner);
 }
     });
