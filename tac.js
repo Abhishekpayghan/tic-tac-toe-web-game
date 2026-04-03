@@ -1,6 +1,9 @@
 let boxes=document.querySelectorAll(".box");
 let reset=document.querySelector("#reset");
 let winner=document.createElement("h1");
+const clickSound = new Audio("win sound.mp3");
+const winSound= new Audio("click sound.mp3");
+const resetSound= new Audio("restart.mp3");
 let iswin=false;
 let count=0;
 let turnO = true;
@@ -19,6 +22,7 @@ const winPatterns=[
 // input to play game 
 boxes.forEach((box)=>{
     box.addEventListener("click",() => {
+        clickSound.play();
         if(turnO){
             box.innerText="O";
             box.classList.add("makeblack");
@@ -33,6 +37,8 @@ boxes.forEach((box)=>{
         count++;
         checkWinner();
         if(count==9 && !iswin){
+           winSound.play();
+
             winner.innerText="Game Draw! Press Reset";
             document.querySelector(".container").append(winner);
 }
@@ -65,6 +71,7 @@ const checkWinner= () =>{
        let pos3=boxes[pattern[2]].innerText;
        if(pos1!=""&& pos2!="" && pos3!=""){
           if(pos1===pos2 && pos2===pos3){
+            winSound.play();
             console.log("winner");
             iswin=true;
             disabeledbtns();
@@ -76,6 +83,8 @@ const checkWinner= () =>{
 };
 // reset button work 
 reset.addEventListener("click",() =>{
+     resetSound.play();
+
     winner.remove();
     boxes.innerText="";
     onreset();
